@@ -15,6 +15,9 @@ public class Player : MonoBehaviour
     public PlayerLeg leg1;
     public PlayerLeg leg2;
 
+    public float savedDirection;
+    public bool playerFlipped;
+
     public bool isGrounded;
     public bool usedGroundJump = false;
     public bool jumpKeyHeld;
@@ -27,19 +30,14 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        direction = 1;
+        direction = -1;
         rb = GetComponent<Rigidbody>();
         meshCollider = GetComponent<MeshCollider>();
         jumpForce = jumpForce = CalculateJumpForce(Physics.gravity.magnitude, jumpHeight);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        moveInput = Input.GetAxisRaw("Horizontal");
-        jumpInputDown = Input.GetButtonDown("Jump");
-        jumpInputUp = Input.GetButtonUp("Jump");
-
         if (leg1.IsGrounded() || leg2.IsGrounded())
         {
             isGrounded = true;
@@ -50,8 +48,16 @@ public class Player : MonoBehaviour
         {
             isGrounded = false;
             isJumping = true;
-            usedGroundJump = true;  
+            usedGroundJump = true;
         }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        moveInput = Input.GetAxisRaw("Horizontal");
+        jumpInputDown = Input.GetButtonDown("Jump");
+        jumpInputUp = Input.GetButtonUp("Jump");
 
         Move();
         Flip();
@@ -65,6 +71,8 @@ public class Player : MonoBehaviour
         {
             jumpKeyHeld = false;
         }
+
+        JumpStopped();
 
     }
 
@@ -80,6 +88,16 @@ public class Player : MonoBehaviour
         else if (moveInput > 0)
             direction = -1;
 
+        if (direction != 0 && direction != savedDirection)
+        {
+            savedDirection = direction;
+            playerFlipped = true;
+        }
+        else
+        {
+            playerFlipped = false;
+        }
+
         transform.localEulerAngles = new Vector3(0.0f, 90f * direction, 0.0f);
     }
 
@@ -93,7 +111,7 @@ public class Player : MonoBehaviour
             isJumping = true;
             if (isGrounded) // Player jumps on the ground
             {
-                jumpForce = CalculateJumpForce(Physics2D.gravity.magnitude, jumpHeight);
+                jumpForce = CalculateJumpForce(Physics.gravity.magnitude, jumpHeight);
                 rb.velocity = new Vector3(rb.velocity.x, 0f, 0f);
                 rb.AddForce(Vector3.up * jumpForce * rb.mass, ForceMode.Impulse);
                 usedGroundJump = true;
