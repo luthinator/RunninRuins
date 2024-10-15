@@ -101,6 +101,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void JumpStopped()
+    {
+        if (isJumping && !jumpKeyHeld && rb.velocity.y > 0)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, 0f, 0f);
+        }
+    }
+
     public static float CalculateJumpForce(float gravityStrength, float jumpHeight)
     {
         return Mathf.Sqrt(2 * gravityStrength * jumpHeight);
