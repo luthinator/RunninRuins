@@ -6,7 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 5f;
-    Rigidbody rb;
+    public Rigidbody rb;
     MeshCollider meshCollider;
     [SerializeField] LayerMask groundLayer;
     public float moveInput;
@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     public float jumpHeight;
     private float jumpForce;
 
+    public bool debugPause = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +39,14 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Debug();
+
         if (leg1.IsGrounded() || leg2.IsGrounded())
         {
             isGrounded = true;
@@ -50,14 +59,11 @@ public class Player : MonoBehaviour
             isJumping = true;
             usedGroundJump = true;
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
         moveInput = Input.GetAxisRaw("Horizontal");
         jumpInputDown = Input.GetButtonDown("Jump");
         jumpInputUp = Input.GetButtonUp("Jump");
+        
 
         Move();
         Flip();
@@ -76,6 +82,7 @@ public class Player : MonoBehaviour
 
     }
 
+    
     void Move()
     {
         rb.velocity = new Vector3(moveInput * moveSpeed, rb.velocity.y, rb.velocity.z);
@@ -134,4 +141,31 @@ public class Player : MonoBehaviour
 
     public float GetMoveInput() { return moveInput; }
 
+
+
+    void Debug()
+    {
+        bool pauseGameInput = Input.GetKeyDown(KeyCode.P);
+        bool stepGameInput = Input.GetKeyDown(KeyCode.O);
+
+        if (pauseGameInput && Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+            debugPause = false;
+        }
+        else if (pauseGameInput && Time.timeScale == 1)
+        {
+            Time.timeScale = 0;
+            debugPause = true;
+        }
+
+        if (Time.timeScale == 0 && stepGameInput && debugPause)
+        {
+            Time.timeScale = 1;
+        }
+        else if (Time.timeScale == 1 && !stepGameInput && debugPause)
+        {
+            Time.timeScale = 0;
+        }
+    }
 }

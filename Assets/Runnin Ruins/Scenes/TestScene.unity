@@ -274,7 +274,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 85065326}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00000047683716, y: 1.98, z: -3.3000007}
+  m_LocalPosition: {x: 0, y: 1.98, z: -3.3000007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1128,6 +1128,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0000002, y: 1, z: 1.0000002}
   m_Center: {x: 0.00000017881393, y: 0, z: 0.0000009536743}
+--- !u!1 &441075095 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4653443409156004516, guid: e616bcf6c912c8c45b278bafabc64531, type: 3}
+  m_PrefabInstance: {fileID: 738960078}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &441075100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441075095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50f052171cb81c14bb0d8577f2979762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minAspectRatio: 1
+  _maxAspectRatio: 2
 --- !u!1 &455944739
 GameObject:
   m_ObjectHideFlags: 0
@@ -1277,7 +1296,7 @@ MonoBehaviour:
   player: {fileID: 1044422075}
   FootTransform: {fileID: 2101751846}
   speed: 7
-  stepDistance: 1
+  stepDistance: 2.5
   stepHeight: 0.6
   dominantLeg: 1
   wallOffset: 0.5
@@ -1288,6 +1307,7 @@ MonoBehaviour:
   savedPosition: {x: 0, y: 0, z: 0}
   lerp: 0
   lerp2: 0
+  forceUp: 1.8
 --- !u!1 &545588588
 GameObject:
   m_ObjectHideFlags: 0
@@ -1830,23 +1850,39 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 67738183363087544, guid: e616bcf6c912c8c45b278bafabc64531, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.9816465
+      value: -5.9270697
       objectReference: {fileID: 0}
     - target: {fileID: 67738183363087544, guid: e616bcf6c912c8c45b278bafabc64531, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.99500006
+      value: 0.910855
       objectReference: {fileID: 0}
     - target: {fileID: 67738183363087544, guid: e616bcf6c912c8c45b278bafabc64531, type: 3}
       propertyPath: m_LocalPosition.z
       value: -10
       objectReference: {fileID: 0}
+    - target: {fileID: 645436014259311202, guid: e616bcf6c912c8c45b278bafabc64531, type: 3}
+      propertyPath: orthographic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 645436014259311202, guid: e616bcf6c912c8c45b278bafabc64531, type: 3}
+      propertyPath: field of view
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 645436014259311202, guid: e616bcf6c912c8c45b278bafabc64531, type: 3}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 645436014259311202, guid: e616bcf6c912c8c45b278bafabc64531, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 811911273570770578, guid: e616bcf6c912c8c45b278bafabc64531, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.9816465
+      value: -5.9270697
       objectReference: {fileID: 0}
     - target: {fileID: 811911273570770578, guid: e616bcf6c912c8c45b278bafabc64531, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.9949998
+      value: 0.910855
       objectReference: {fileID: 0}
     - target: {fileID: 811911273570770578, guid: e616bcf6c912c8c45b278bafabc64531, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1854,11 +1890,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1003646555462604162, guid: e616bcf6c912c8c45b278bafabc64531, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.566643
+      value: 7.5120654
       objectReference: {fileID: 0}
     - target: {fileID: 1003646555462604162, guid: e616bcf6c912c8c45b278bafabc64531, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.3100002
+      value: 0.40414506
       objectReference: {fileID: 0}
     - target: {fileID: 1003646555462604162, guid: e616bcf6c912c8c45b278bafabc64531, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1868,13 +1904,17 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 726241329}
+    - target: {fileID: 1576491303455674924, guid: e616bcf6c912c8c45b278bafabc64531, type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 1585166241203588461, guid: e616bcf6c912c8c45b278bafabc64531, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.566643
+      value: 7.5120654
       objectReference: {fileID: 0}
     - target: {fileID: 1585166241203588461, guid: e616bcf6c912c8c45b278bafabc64531, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.3100002
+      value: 0.40414506
       objectReference: {fileID: 0}
     - target: {fileID: 1585166241203588461, guid: e616bcf6c912c8c45b278bafabc64531, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1946,11 +1986,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5708322839229728007, guid: e616bcf6c912c8c45b278bafabc64531, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.566643
+      value: 7.5120654
       objectReference: {fileID: 0}
     - target: {fileID: 5708322839229728007, guid: e616bcf6c912c8c45b278bafabc64531, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.3100002
+      value: 0.40414506
       objectReference: {fileID: 0}
     - target: {fileID: 5708322839229728007, guid: e616bcf6c912c8c45b278bafabc64531, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2037,8 +2077,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7680929514378169474, guid: e616bcf6c912c8c45b278bafabc64531, type: 3}
+      propertyPath: m_ScreenX
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7680929514378169474, guid: e616bcf6c912c8c45b278bafabc64531, type: 3}
       propertyPath: m_TrackedObjectOffset.z
-      value: -3
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7687501443209274764, guid: e616bcf6c912c8c45b278bafabc64531, type: 3}
       propertyPath: m_Name
@@ -2540,6 +2584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  rb: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -2556,6 +2601,7 @@ MonoBehaviour:
   jumpInputDown: 0
   jumpInputUp: 0
   jumpHeight: 5
+  debugPause: 0
 --- !u!54 &1044422077
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3416,7 +3462,7 @@ MonoBehaviour:
   player: {fileID: 1044422075}
   FootTransform: {fileID: 432649494}
   speed: 7
-  stepDistance: 1
+  stepDistance: 2.5
   stepHeight: 0.6
   dominantLeg: 0
   wallOffset: 0.5
@@ -3427,6 +3473,7 @@ MonoBehaviour:
   savedPosition: {x: 0, y: 0, z: 0}
   lerp: 0
   lerp2: 0
+  forceUp: 1.8
 --- !u!1 &1594536849
 GameObject:
   m_ObjectHideFlags: 0

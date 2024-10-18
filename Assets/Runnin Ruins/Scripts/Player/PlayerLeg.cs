@@ -66,7 +66,7 @@ public class PlayerLeg : MonoBehaviour
     {
         Vector3 wallCheck = new Vector3(player.transform.position.x, footTarget.position.y, footTarget.position.z);
         Ray ray = new Ray(wallCheck, Vector3.right * -player.direction);
-        if (Physics.Raycast(ray, out RaycastHit info, Vector3.Distance(wallCheck, footTarget.position), groundLayer.value))
+        if (Physics.Raycast(ray, out RaycastHit info, Vector3.Distance(wallCheck, footTarget.position), groundLayer))
         {
             Vector3 newTarget = info.point;
             newTarget.x += wallOffset * player.direction;
@@ -82,7 +82,7 @@ public class PlayerLeg : MonoBehaviour
     public void PlayerMove(Vector3 target)
     {
         Ray ray = new Ray(target, Vector3.down);
-        if (Physics.Raycast(ray, out RaycastHit info, 3, groundLayer.value))
+        if (Physics.Raycast(ray, out RaycastHit info, 3, groundLayer))
         {
             highlightedNewPosition = info.point;
             if (Vector3.Distance(newPosition, info.point) > stepDistance && !otherFoot.IsMoving() && lerp >= 1)
@@ -130,7 +130,8 @@ public class PlayerLeg : MonoBehaviour
     {
         lerp = 1;
         lerp2 = 1;
-        Vector3 resetVector = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
+        Vector3 resetVector = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
+        transform.position = resetVector;
         newPosition = resetVector;
         oldPosition = resetVector;
         legPosition = resetVector;
